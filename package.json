@@ -1,0 +1,15 @@
+{
+  "name": "dsa",
+  "version": "1.0.0",
+  "description": "DSA project for personal learning",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "dsa"
+  },
+  "author": "",
+  "license": "ISC"
+}
