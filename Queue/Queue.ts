@@ -17,12 +17,12 @@ export class Queue<T> {
 		this.length++;
 
 		const node: QNode<T> = { value: item };
-		if (!this.head) {
-			this.head = this.tail = node;
+		if (!this.tail) {
+			this.tail = this.head = node;
 			return;
 		}
 
-		this.tail!.next = node;
+		this.tail.next = node;
 		this.tail = node;
 	}
 

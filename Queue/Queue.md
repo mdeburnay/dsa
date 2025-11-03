@@ -2,6 +2,8 @@
 
 Queues are a basic, singly-linked data structure with algorithms to complete the logic of a queues functionality.
 
+Queues follow a FIFO (First In, First Out) principle - tiems added first are removed first.
+
 When working with queues, we will typically have three core functions:
 
 1. Enqueue - adding to the `tail` of the queue
@@ -33,8 +35,8 @@ Removing items will involve:
 Adding items will involve:
 
 1. Incremementing the length by `1`.
-2. Checking if `head` exists. If not, set **both** `head` and `tail` to the newly added item. If only one item exists in the queue, it'll be both `head` and `tail`. Return after doing this to avoid further logic.
-3. If `head` already exists, we can assume `tail` does too. `this.tail.next` becomes the new node, then `this.tail` becomes the new node to move it to the end of the queue.
+2. Checking if `tail` exists. If not, set **both** `head` and `tail` to the newly added item. If only one item exists in the queue, it'll be both `head` and `tail`. Return after doing this to avoid further logic.
+3. If `tail` already exists, `this.tail.next` becomes points to the new node, then `this.tail` becomes the new node to move it to the end of the queue.
 
 ```mermaid
     flowchart LR
