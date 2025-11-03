@@ -5,8 +5,8 @@ type QNode<T> = {
 
 export class Queue<T> {
 	public length: number;
-	private head: QNode<T> | undefined;
-	private tail: QNode<T> | undefined;
+	private head?: QNode<T>;
+	private tail?: QNode<T>;
 
 	constructor() {
 		this.head = this.tail = undefined;
