@@ -1,11 +1,11 @@
-type SNode<T> = {
+type Node<T> = {
 	value: T;
-	prev?: SNode<T> | undefined;
+	prev?: Node<T> | undefined;
 };
 
 export class Stack<T> {
 	public length: number;
-	private head?: SNode<T>;
+	private head?: Node<T>;
 
 	constructor() {
 		this.head = undefined;
@@ -16,11 +16,11 @@ export class Stack<T> {
 		this.length++;
 
 		if (!this.head) {
-			this.head = { value: item } as SNode<T>;
+			this.head = { value: item };
 			return;
 		}
 
-		this.head = { value: item, prev: this.head } as SNode<T>;
+		this.head = { value: item, prev: this.head }
 	}
 
 	public pop(): T | undefined {
