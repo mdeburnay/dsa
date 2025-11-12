@@ -1,12 +1,6 @@
 /**
  * Maze problem *
  *
- * Inputs:
- * 1. Maze itself (2D array)
- * 2. Point/current location
- * 3. seen array
- * 4.
- *
  **/
 
 const dir: [number, number][] = [
@@ -84,6 +78,9 @@ export function walk(
 			return true;
 		}
 	}
+
+	// post
+	path.pop();
 
 	return false;
 }
