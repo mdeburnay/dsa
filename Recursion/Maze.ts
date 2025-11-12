@@ -9,10 +9,11 @@
  *
  **/
 
-const maze = [
-	"xxxxxxxxxxxxxx xxxxx",
-	"xxxxx          xxxxx",
-	"xxxxxx xxxxxxxxxxxxx",
+const dir: [number, number][] = [
+	[-1, 0],
+	[1, 0],
+	[0, -1],
+	[0, 1],
 ];
 
 type Point = {
@@ -20,17 +21,24 @@ type Point = {
 	y: number;
 };
 
-function walk(
-	maze: string[],
+export function walk(
+	maze: string[][],
 	wall: string,
 	curr: Point,
 	end: Point,
-	seen: Point[]
+	seen: boolean[][],
+	path: Point[]
 ): boolean {
 	/**
 	 * BASE CASES
 	 */
-	// 1. If off the map
+	// 1. If at end
+	if (curr.x === end.x && curr.y === end.y) {
+		path.push(end);
+		return true;
+	}
+
+	// 2. If off the map
 	if (
 		curr.x < 0 ||
 		curr.x >= maze[0].length ||
@@ -40,20 +48,60 @@ function walk(
 		return false;
 	}
 
-	// 2. If at a wall
+	// 3. If at a wall
 	if (maze[curr.y][curr.x] === wall) {
 		return false;
 	}
 
-	// 3. If already seen
-	// 4. If at end
+	// 4. If already seen
+	if (seen[curr.y][curr.x]) {
+		return false;
+	}
+
+	/**
+	 * Recursion steps
+	 */
+	// pre
+	seen[curr.y][curr.x] = true;
+	path.push(curr);
+
+	// recurse
+	for (let i = 0; i < dir.length; ++i) {
+		const [x, y]: [number, number] = dir[i];
+		if (
+			walk(
+				maze,
+				wall,
+				{
+					x: curr.x + x,
+					y: curr.y + y,
+				},
+				end,
+				seen,
+				path
+			)
+		) {
+			return true;
+		}
+	}
+
 	return false;
 }
 
-function solveMaze(
-	maze: string[],
+export function solveMaze(
+	maze: string[][],
 	wall: string,
 	start: Point,
-	end: Point,
-	seen: Point[]
-) {}
+	end: Point
+): Point[] {
+	const seen: boolean[][] = [];
+	const path: Point[] = [];
+
+	for (let i = 0; i < maze.length; ++i) {
+		seen.push(new Array(maze[0].length).fill(false));
+	}
+
+	walk(maze, wall, start, end, seen, path);
+
+	return path;
+}
