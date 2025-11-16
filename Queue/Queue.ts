@@ -31,13 +31,13 @@ export class Queue<T> {
 			return undefined;
 		}
 
+		const head = this.head;
 		this.length--;
 		if (this.length === 0) {
 			this.tail = this.head = undefined;
-			return;
+			return head.value;
 		}
 
-		const head = this.head;
 		this.head = this.head.next;
 		return head.value;
 	}
