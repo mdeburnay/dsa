@@ -4,7 +4,10 @@ type BinaryNode<T> = {
 	right?: BinaryNode<T>;
 };
 
-export function walk(curr: BinaryNode<number>, path: number[]): number[] {
+export function walk(
+	curr: BinaryNode<number> | undefined,
+	path: number[]
+): number[] {
 	/**
 	 * Base cases:
 	 *
@@ -23,6 +26,9 @@ export function walk(curr: BinaryNode<number>, path: number[]): number[] {
 	return path;
 }
 
-export function preOrderSearch(head: BinaryNode<number>, path: []): number[] {
+export function preOrderSearch(
+	head: BinaryNode<number> | undefined,
+	path: []
+): number[] {
 	return walk(head, path);
 }

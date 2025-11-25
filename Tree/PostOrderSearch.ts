@@ -4,25 +4,29 @@ type BinaryNode<T> = {
 	right?: BinaryNode<T>;
 };
 
-export function walk(curr: BinaryNode<number>, path: number[]): number[] {
+export function walk(
+	curr: BinaryNode<number> | undefined,
+	path: number[]
+): number[] {
 	/**
 	 * Base cases:
 	 *
-	 * 1. If left or right doesn't exist
+	 * 1. If current doesn't exist
 	 */
 	if (!curr) return path;
-
-	// pre
-	path.push(curr.value);
 
 	// recurse
 	walk(curr.left, path);
 	walk(curr.right, path);
+	path.push(curr.value);
 
 	// post
 	return path;
 }
 
-export function preOrderSearch(head: BinaryNode<number>, path: []): number[] {
+export function postOrderSearch(
+	head: BinaryNode<number> | undefined,
+	path: number[]
+): number[] {
 	return walk(head, path);
 }
