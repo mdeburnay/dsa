@@ -9,26 +9,24 @@ export function walk(
 	path: number[]
 ): number[] {
 	/**
-	 * Base cases:
+	 * Base cases
 	 *
 	 * 1. If current doesn't exist
 	 */
 	if (!curr) return path;
 
-	// pre
-	path.push(curr.value);
-
 	// recurse
 	walk(curr.left, path);
+	path.push(curr.value);
 	walk(curr.right, path);
 
 	// post
 	return path;
 }
 
-export function preOrderSearch(
+export function inOrderTraversal(
 	head: BinaryNode<number> | undefined,
 	path: number[]
-): number[] {
+) {
 	return walk(head, path);
 }
